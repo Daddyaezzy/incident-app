@@ -63,7 +63,7 @@ function IncidentList() {
 
                 <p>{`Location: ${incident.latitude}, ${incident.longitude}`}</p>
                 <button
-                  className="myBtn"
+                  className="delete-btn"
                   onClick={() => handleDelete(incident.id)}
                 >
                   Delete

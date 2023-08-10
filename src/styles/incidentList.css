@@ -32,6 +32,19 @@ ul{
 h3 span{
   font-weight: 400;
 }
+.delete-btn{
+  background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+.delete-btn:hover{
+  background-color: #0056b3;
+}
 
 .incident-card p{
   text-transform: capitalize;
