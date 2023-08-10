@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
 
@@ -13,8 +14,7 @@ const PORT = process.env.PORT || 5000;
 app.use("/incidents", require("./routes/incidents"));
 
 // Connect to MongoDB
-const connectionString =
-  "mongodb+srv://tester:1234@cluster0.xkx94ws.mongodb.net/?retryWrites=true&w=majority";
+const connectionString = process.env.MONGODB_URI;
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
