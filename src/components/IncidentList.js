@@ -13,7 +13,7 @@ function IncidentList() {
         // console.log(response.data);
 
         let fetchedIncidents = response.data.map((res) => ({
-          id: res.id,
+          id: res._id,
           category: res.category,
           description: res.description,
           latitude: res.latitude,
@@ -22,11 +22,22 @@ function IncidentList() {
         }));
         setIncidents([...incidents, ...fetchedIncidents]);
       } else {
-        console.log("couldnt fetch incidents");
+        console.log("couldn't fetch incidents");
       }
     });
   }, []);
   console.log(incidents);
+
+  const handleDelete = async (incidentId) => {
+    try {
+      await axios.delete(
+        `http://localhost:5000/incidents/delete/${incidentId}`
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="incident-list">
@@ -49,6 +60,9 @@ function IncidentList() {
                 <p>{`Description: ${incident.description}`}</p>
 
                 <p>{`Location: ${incident.latitude}, ${incident.longitude}`}</p>
+                <button onClick={() => handleDelete(incident.id)}>
+                  Delete
+                </button>
               </div>
             </li>
           ))}

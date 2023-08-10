@@ -33,6 +33,18 @@ router.post("/add", upload.single("image"), async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const incidentId = req.params.id;
+    await Incident.findByIdAndRemove(incidentId);
+    // console.log(incidentId);
+    res.json({ message: "Item deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 // API endpoint to get all incidents
 router.get("/", async (req, res) => {
   try {

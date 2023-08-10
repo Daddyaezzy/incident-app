@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 5000;
 app.use("/incidents", require("./routes/incidents"));
 
 // Connect to MongoDB
-connectionString = "mongodb://localhost:27017/CitizensReporting";
+const connectionString =
+  "mongodb+srv://tester:1234@cluster0.xkx94ws.mongodb.net/?retryWrites=true&w=majority";
+
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
