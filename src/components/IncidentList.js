@@ -8,30 +8,32 @@ function IncidentList() {
   // Replace with API call to fetch incidents
 
   useEffect(() => {
-    axios.get("http://localhost:5000/incidents/").then((response) => {
-      if (response.data.length > 0) {
-        // console.log(response.data);
+    axios
+      .get("https://incident-app-backend.onrender.com/incidents/")
+      .then((response) => {
+        if (response.data.length > 0) {
+          // console.log(response.data);
 
-        let fetchedIncidents = response.data.map((res) => ({
-          id: res._id,
-          category: res.category,
-          description: res.description,
-          latitude: res.latitude,
-          longitude: res.longitude,
-          image: res.image,
-        }));
-        setIncidents([...incidents, ...fetchedIncidents]);
-      } else {
-        console.log("couldn't fetch incidents");
-      }
-    });
+          let fetchedIncidents = response.data.map((res) => ({
+            id: res._id,
+            category: res.category,
+            description: res.description,
+            latitude: res.latitude,
+            longitude: res.longitude,
+            image: res.image,
+          }));
+          setIncidents([...incidents, ...fetchedIncidents]);
+        } else {
+          console.log("couldn't fetch incidents");
+        }
+      });
   }, []);
-  console.log(incidents);
+  // console.log(incidents);
 
   const handleDelete = async (incidentId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/incidents/delete/${incidentId}`
+        `https://incident-app-backend.onrender.com/incidents/delete/${incidentId}`
       );
       window.location.reload();
     } catch (error) {
@@ -60,7 +62,10 @@ function IncidentList() {
                 <p>{`Description: ${incident.description}`}</p>
 
                 <p>{`Location: ${incident.latitude}, ${incident.longitude}`}</p>
-                <button onClick={() => handleDelete(incident.id)}>
+                <button
+                  className="myBtn"
+                  onClick={() => handleDelete(incident.id)}
+                >
                   Delete
                 </button>
               </div>

@@ -44,7 +44,10 @@ function IncidentForm() {
 
       // Send POST request to the API endpoint
       axios
-        .post("http://localhost:5000/incidents/add/", formData)
+        .post(
+          "https://incident-app-backend.onrender.com/incidents/add/",
+          formData
+        )
         .then((res) => console.log(res.data));
 
       setIncident({
